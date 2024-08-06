@@ -1,0 +1,8 @@
+local_storage/
+
+.venv/
+.venv2/
+*.pyc
+
+
+app/pages/*tmp*

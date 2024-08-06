@@ -1,0 +1,8 @@
+[[pages]]
+path = "app/main.py"
+name = "Chatbot"
+
+[[pages]]
+path = "app/pages/2_upload.py"
+name = "Documents"
+

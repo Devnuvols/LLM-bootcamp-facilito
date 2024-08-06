@@ -1,0 +1,11 @@
+streamlit:
+  title: "DEVNUVOLS SERVICE ASSISTANT"
+  tab_title: "DEVnuvols bot"
+  logo: "./app/images/logo_facil.png"
+  page_icon: "./app/images/logoDevNuvols.png"
+  avatar: "./app/images/LOGO100X100.png"
+  assistant_intro_message: "Hola 👋, soy tu asistente de IA, ¿en qué puedo ayudarte? \n\n *:grey[Hello 👋, I am your AI assistant, how can I help you?]*"
+  about: "Esto es un bot de prueba, autor: Miguel Monllau"
+upload:
+  tab_title: "Upload doc"
+  page_icon: "./app/images/logoDevNuvols.png"

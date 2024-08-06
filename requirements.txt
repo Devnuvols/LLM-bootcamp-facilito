@@ -4,7 +4,7 @@ streamlit-feedback==0.1.2
 requests
 pyyaml
 pypdf2
-openai>=1.32.0,<2.0.0google-generativeai
+openai>=1.32.0
 
 tqdm
 tiktoken
@@ -22,3 +22,4 @@ cryptography
 python-docx
 python-pptx
 beautifulsoup4
+

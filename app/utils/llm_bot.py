@@ -25,17 +25,19 @@ def chat_llm(history: List[Dict[str, str]],llm:str) -> Iterable[str]:
             if chunk.choices[0].delta.content is not None:
                 yield chunk.choices[0].delta.content
    
-def chat_llm_test(history: List[Dict[str, str]]) -> Iterable[str]:
-    """
-    Uses the ChatCompletion API with the given messages.
-    """
-    
+def llm_guard(prompt:str, tematica:str)->str:
+    messages = [
+        {"role": "system", "content": "Eres un asistente que ayuda a verificar la temática de los textos."},
+        {"role": "user", "content": f"Clasifica el siguiente texto en la temática '{tematica}':\n\nTexto: \"{prompt}\"\n\n¿El texto corresponde a la temática '{tematica}'? Responde 'sí' o 'no' . Si la respuesta es no, proporciona una breve explicación."}
+    ]
     response = client.chat.completions.create(
-            model="gpt-4o",
-            messages=history,
-            stream=False
-        )
-    return response.choices[0].message.content
+        model="gpt-4o",
+        messages=messages,
+        temperature=0.2,
+    )
+    respuesta_completa = response.choices[0].message.content
+    return respuesta_completa
+
    
 def get_embedding(txt: str) -> List[float]:
     """

@@ -62,11 +62,7 @@ if uploaded_file := st.file_uploader('SUBIR LOS DOCUMENTOS AQUI....', type=['pdf
         # Indexar el contenido en la base de datos
         my_bar.progress(0, text='Indexing document.')
         file_path = os.path.join('local_storage/pdf', uploaded_file.name)
-        print(f"mmmmmmm-------el archivo:{file_path}", flush=True)
-
         vectors = process_file(file_path, 'openai')
-        
-        print("--------MMMMM------------")
         save(vectors, os.path.join('local_storage/json', os.path.splitext(uploaded_file.name)[0] + '.json'))
         my_bar.progress(0, text='Indexing vectors in the database.')
         for k, vector in enumerate(vectors):
@@ -110,9 +106,9 @@ finally:
 if not df.empty:
     df.fillna('-', inplace=True)
 
-    pdf_ip = os.environ.get('HTTP_HOST', 'localhost')
+    pdf_ip = os.environ.get('HTTP_HOST')
     df['name'] = df['name'].apply(lambda x: x.replace('local_storage/pdf/', ''))
-    df['url'] = df['name'].apply(lambda x: f'http://{pdf_ip}/downloads/' + x)
+    df['url'] = df['name'].apply(lambda x: f'http://{pdf_ip}:8900/local_storage/pdf/' + x)
 
     
     if 'Mark for deletion' not in df.columns:

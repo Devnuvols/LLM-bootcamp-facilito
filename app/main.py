@@ -130,8 +130,8 @@ if prompt := st.chat_input('Escribe tu pregunta...'):
             Intenta dar varias respuestas cada una citando la fuente, solo si es necesario.
             En caso de citar la fuente haz que se vea la página como en estos ejemplos:
     
-            http://localhost/downloads/Manual-Usuario-AK-PC-781.pdf#page=24 --> [Manual-Usuario-AK-PC-781 (page 24)](https://facilito.nebot.co/downloads/Manual-Usuario-AK-PC-781.pdf#page=24)
-            http://68.219.187.40/downloads/Ficha-t-cnica-Televis-IN.pdf#page=20 --> [Ficha-t-cnica-Televis-IN (page 20)](https://facilito.nebot.co/downloads/Ficha-t-cnica-Televis-IN.pdf#page=20)
+            http://localhost/downloads/Manual-Usuario-AK-PC-781.pdf#page=24 --> [Manual-Usuario-AK-PC-781 (page 24)](http://20.13.124.139:8900/local_storage/pdf/Manual-Usuario-AK-PC-781.pdf#page=24)
+            http://68.219.187.40/downloads/Ficha-t-cnica-Televis-IN.pdf#page=20 --> [Ficha-t-cnica-Televis-IN (page 20)](http://20.13.124.139:8900/local_storage/pdf/Ficha-t-cnica-Televis-IN.pdf#page=20)
         """
         tmp_messages = st.session_state.messages.copy()
         tmp_messages.append({"role": "user", "content": modified_prompt})

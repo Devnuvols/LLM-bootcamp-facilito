@@ -100,7 +100,7 @@ def get_context(prompt: str, history: List[Dict[str, str]]) -> Dict[str, Any]:
 
 def normalize_str(a: str) -> str:
     """Removes all non-alphanumerical characters"""
-    pattern = re.compile('[\W_]+')
+    pattern = re.compile(r'[\W_]+')
     return unidecode(pattern.sub('', a))
 
 def get_next_word(sentence: str, target_words: List[str]) -> str:
@@ -117,8 +117,8 @@ def get_next_word(sentence: str, target_words: List[str]) -> str:
 
 def to_url(name: str, page: int) -> str:
     """Parses name and page into url from http server of pdfs."""
-    name = name.replace(" ", "%20").replace('local_storage/pdf/', '')
+    name = name.replace(" ", "%20").replace('local_storage/pdf/', ':8900/local_storage/pdf/')
     
     pdf_ip = os.environ.get('HTTP_HOST', 'localhost')
-    access_url = f'https://' + pdf_ip + '/downloads/' + name + '#page=' + str(page)
+    access_url = f'http://' + pdf_ip + name + '#page=' + str(page)
     return access_url

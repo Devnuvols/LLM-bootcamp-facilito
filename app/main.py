@@ -63,7 +63,6 @@ if rerun:
     del st.session_state.messages
     st.rerun()
     
-    
 # Initialize chat history
 if "messages" not in st.session_state:
     
@@ -112,11 +111,9 @@ if prompt := st.chat_input('Escribe tu pregunta...'):
     
     # comprobar si el prompt esta permitido
     test=llm_guard(prompt, 'el sistema solar y planetas, astronomía en general')
-    print(f"1.-Prompt : {prompt}\n")
-    print(f"2.-Resultado: {test}\n")
+    #print(f"1.-Prompt : {prompt}\n")
+    #print(f"2.-Resultado: {test}\n")
     if test == "Sí.":
-        print(f"3.-Resultado: SI\n")
-        print(f"4.-Prompt {st.session_state['counter']}: {prompt}\n")
         #aqui realizamos la consulta, todo el codigo de la consulta   
         context = get_context(prompt, st.session_state.messages.copy())
         modified_prompt = f"""
@@ -137,7 +134,7 @@ if prompt := st.chat_input('Escribe tu pregunta...'):
         tmp_messages.append({"role": "user", "content": modified_prompt})
 
         responses = chat_llm(tmp_messages,st.session_state['model_ai'])
-        print(responses)
+        #print(responses)
 
         full_response = ''
         with st.chat_message("assistant", avatar=config['streamlit']['avatar']):
@@ -148,12 +145,12 @@ if prompt := st.chat_input('Escribe tu pregunta...'):
                 message_placeholder.markdown(full_response + "▌")
             message_placeholder.markdown(full_response)
     
-        print(f'full_response{full_response}')
-        print(f'prompt {prompt}')
+        #print(f'full_response{full_response}')
+        #print(f'prompt {prompt}')
 
         insert_QA(prompt, full_response)
     else:
-        print(f"Resultado: {test}\n")
+        #print(f"Resultado: {test}\n")
         #aqui visuazamos la respuesta del guard
         full_response = test + " Por favor, reformula tu pregunta."
         with st.chat_message("assistant", avatar=config['streamlit']['avatar']):

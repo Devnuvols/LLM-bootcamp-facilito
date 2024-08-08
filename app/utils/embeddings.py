@@ -28,7 +28,6 @@ def count_tokens(txt: str, encoding_name: str) -> int:
     num_tokens = len(encoding.encode(txt))
     return num_tokens
 
-
 def parse_pdf(pdf_path: str) -> List[Dict[str, str]]:
     """
     Return a list of dictionaries containing text with metadata.
@@ -144,7 +143,6 @@ def translate(text: str) -> str:
     )
     return response.choices[0].message.content
 
-
 def preprocess_chunks(chunks: List[Dict[str, str]]) -> List[Dict[str, str]]:
     """
     Translated text.
@@ -158,7 +156,6 @@ def preprocess_chunks(chunks: List[Dict[str, str]]) -> List[Dict[str, str]]:
         for chunk, future in zip(chunks, futures):
             chunk['content-en'] = future.result()
     return chunks
-
 
 def extract_chunks(pages_text: List[Dict[str, str]]) -> List[Dict[str, str]]:
     """

@@ -309,8 +309,8 @@ Se almacenan en la base de datos.
 Aqui se agrupan las funciones que acceden a los LLMs.
 Las funciones acceden a los LLMs para obtener el contexto de los embedings almacenados en la base de datos,
 
-Realizan una consulta para determinar si la pregunta debe aceptarse o filtrarse (guardarail)
+Realiza una consulta para determinar si la pregunta debe aceptarse o filtrarse (guardarail)
 
 Y se realiza la consulta al LLmen funcion del historial, la pregunta y el contexto obtenido , para la redaccion correcta del mensage de respuesta al usuario.
-E
+
 

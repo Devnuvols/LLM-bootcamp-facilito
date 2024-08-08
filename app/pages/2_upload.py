@@ -149,5 +149,3 @@ if not df.empty:
 else:
     st.write("No hay datos disponibles para mostrar.")
     changed_w = pd.DataFrame()  # Definir un DataFrame vacío para changed_w si no hay datos
-
-# Aquí puedes agregar cualquier lógica adicional necesaria para cuando no hay datos disponibles

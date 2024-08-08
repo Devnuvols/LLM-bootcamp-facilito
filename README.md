@@ -43,7 +43,84 @@ Por defecto se utiliza OpenAI, la implementacion de otros LLMs como Gemini, son 
 Requerira añadir la seleccion en el Front, asi como añadir el codigo especifico en la funcion que realiza la respuesta LLM.
 Tambien necesitaremos obtener el API_KEY para el nuevo LLM.
 
-### DATABASE
+### IMPLEMENTAR EN PRODUCCION
+
+Necesitaremos una VM en el cloud,  en el cual instalaremos una version Linux Ubuntu
+
+Intalaremos Python, la version debe ser la 3.10 o posterior , porque como frontend instalaremos Streamlit.
+
+En nuestro caso lo creamos en Azure.
+
+El acceso a la VM lo realizamos mediante SSH , y para la autenticacion usamos la clave privada que nos descargamos en el momento de crear la VM
+
+### Instalar entorno en VM
+
+#### Python
+
+Para instalar Python 3.10 en Ubuntu, puedes seguir estos pasos:
+
+```
+sudo apt update
+sudo apt install software-properties-common
+sudo add-apt-repository ppa:deadsnakes/ppa
+sudo apt update
+sudo apt install python3.10
+```
+
+#### Entorno virtual
+
+Las dependencias, las instalaremos dentro de un entorno virtual:
+
+crear y activar un entorno virtual:
+
+```
+python3.10 -m venv /home/azureuser/.venv
+source  /home/azureuser/.venv/bin/activate
+```
+
+#### CLONAR EL REPOSITORIO EN LA VM
+
+Ejecutamos el comando para clonar el repositorio origen:
+
+```
+git clone {url-github-code}
+```
+
+Creamos un archivo que ejecutaremos definir las variables de entorno que usa la aplicación y para inicializar la aplicación:
+
+```
+nano start_app.sh
+````
+
+Este archivo debe contener algo similar a esto:
+
+```
+export DOCS_HOST={ip_addres_server}
+export DOCS_USER={username}
+export DOCS_PASSWORD={userpasswd}
+export DOCS_NAME={name database}
+export HTTP_HOST={ip_addres_server}
+export OPENAI_API_KEY=s{api key}
+source .venv/bin/activate
+cd chatbot/
+nohup python -m http.server 8900 &
+nohup streamlit run app/main.py --server.port 8000 --server.headless true --theme.base light &
+```
+
+cambiar los permisos de ejecución:
+
+```
+chmod +x /home/azureuser/start_app.sh
+```
+
+Este archivo es el que se debe ejecutar para arrancar la aplicación.
+Es aconsejable configurar la ejecucion automatica como archivo de sistema en el reinicio de la VM
+
+
+### DATABASE. CREACION DE SERVIDOR POSTGRESQL Y DATABASE VECTORIAL
+
+El chatbot utiliza una base de datos propia para el RAG.
+Vamos a ver como poner en funcionamiento el servidor postgresql y la database:
 
 Para crear una base de datos postgresql solo necesitas seguir las
  [instrucciones oficiales para la instalación de postgres]:
@@ -155,66 +232,13 @@ Modificamos el password por defecto para el usuario postgres:
 ALTER USER postgres PASSWORD 'new_password';
 ```
 
+## Servidor de archivos en maquina VM
+
 Para visualizar los archivos PDF simplemente deje funcionando un servidor http en el puerto 8900:
 
 ```
 python -m http.server 8900
 ```
-
-Para instalar Python 3.10 en Ubuntu, puedes seguir estos pasos:
-
-```
-sudo apt update
-sudo apt install software-properties-common
-sudo add-apt-repository ppa:deadsnakes/ppa
-sudo apt update
-sudo apt install python3.10
-```
-
-crear y activar un entorno virtual:
-
-```
-python3.10 -m venv /home/azureuser/.venv
-source  /home/azureuser/.venv/bin/activate
-```
-
-CLONAR EL REPOSITORIO EN LA VM
-
-Ejecutamos el comando para clonar el repositorio origen:
-
-```
-git clone {url-github-code}
-```
-
-Creamos un archivo que ejecutaremos definir las variables de entorno que usa la aplicación y para inicializar la aplicación:
-
-```
-nano start_app.sh
-````
-
-Este archivo debe contener algo similar a esto:
-
-```
-export DOCS_HOST={ip_addres_server}
-export DOCS_USER={username}
-export DOCS_PASSWORD={userpasswd}
-export DOCS_NAME={name database}
-export HTTP_HOST={ip_addres_server}
-export OPENAI_API_KEY=s{api key}
-source .venv/bin/activate
-cd chatbot/
-nohup python -m http.server 8900 &
-nohup streamlit run app/main.py --server.port 8000 --server.headless true --theme.base light &
-```
-
-cambiar los permisos de ejecución:
-
-```
-chmod +x /home/azureuser/start_app.sh
-```
-
-Este archivo es el que se debe ejecutar para arrancar la aplicación.
-Es aconsejable configurar la ejecucion automatica como archivo de sistema en el reinicio de la VM
 
 
 ## PERSONALIZACION Chatbot
@@ -230,6 +254,19 @@ Una vez incorporados , podremos empezar a realizar preguntas al chatbot-
 
 ### Tematica chatbot
 
-En el prompt se indica la tematica del chatbot, este parametro se usa en la comprocacion interna antes de procesar cada pregunta,
+En el prompt se indica la tematica del chatbot, este parametro se usa en la comprocacion interna antes de procesar cada pregunta.
+
+### Aspecto Frontend 
+La personalizacion en el aspecto se puede modificar editanto los archivos de Streamlit: config.yml, las imagenes en el directorio images.
+
+### Paginas frontend
+
+la pagina principal del frontend es main.py. 
+
+Esta pagina contiene la logica y los elementos del chatbot
+
+La pagina  pages\2_upload.py es para cargar nuevos documentos de conocimiento, ver los documentos que se han subido y eliminarlos si se desea, asi como abrir el documento para visualizarlo.
+
+
 
 

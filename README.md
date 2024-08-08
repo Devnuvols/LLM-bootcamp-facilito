@@ -257,7 +257,13 @@ Una vez incorporados , podremos empezar a realizar preguntas al chatbot-
 En el prompt se indica la tematica del chatbot, este parametro se usa en la comprocacion interna antes de procesar cada pregunta.
 
 ### Aspecto Frontend 
-La personalizacion en el aspecto se puede modificar editanto los archivos de Streamlit: config.yml, las imagenes en el directorio images.
+La personalizacion en el aspecto se puede modificar editanto los archivos de Streamlit: 
+
+config.yml, 
+
+las imagenes en el directorio images.
+
+directorio styles contiene el css que modifica el aspecto y permite la correcta visualizaicon en dispositivos mobiles
 
 ### Paginas frontend
 

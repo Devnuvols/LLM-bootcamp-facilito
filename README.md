@@ -226,4 +226,10 @@ Personalizacemos el prompt , indicando que es un asistente experto en astronbomi
 
 y posteriormente se procedera a incorporar estos documentos como base de conocimiento.
 
-Una vez incorporados , podremos empezar a realizar preguntas al chatbot
+Una vez incorporados , podremos empezar a realizar preguntas al chatbot-
+
+### Tematica chatbot
+
+En el prompt se indica la tematica del chatbot, este parametro se usa en la comprocacion interna antes de procesar cada pregunta,
+
+

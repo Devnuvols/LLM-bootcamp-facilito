@@ -267,6 +267,44 @@ Esta pagina contiene la logica y los elementos del chatbot
 
 La pagina  pages\2_upload.py es para cargar nuevos documentos de conocimiento, ver los documentos que se han subido y eliminarlos si se desea, asi como abrir el documento para visualizarlo.
 
+### LLMS, EMBEDINGS, RAG
 
+En el directorio "utils" estan las funciones que permiten los accesos a la base de datos, la creacion de embeding, el acceso a los LLMs, etc
 
+#### database.py
+
+Aqui se agrupan las funciones que permiten el acceso a la base de datos para :
+1.- Realizar la conexion
+2.- Almacenar , modificar informacion en el historial
+3.- almacenar / leer y eliminar infomracion en la tabla docs (embedings)
+
+#### embedings.py
+
+Aqui se agrupan las funciones que realizar el proceso de vectorizado de los documentos , a partir del pdf, docx, ... 
+
+hasta obtener los vectores que se almacenaran en la tabla denominada docs que contendra embeddigs.
+Se ha utilizado los embedings de OpenAi, en las pruebas dse ha usado ADA, aunque finalmente se usa 'text-embedding-3-small'
+Si se desea usar el modelo large, para aprovechar el numero de vectores, deberiamos adaptar la base de datos PostgreSql, que ahora tiene
+1536 vectores.
+
+En las pruebas realizadas con otros modelos como Gemini, que tiene los vectores de 768 dimensiones. No hemos obtenido resultados mejores.
+
+Resumen del procesado:
+
+En el proceso de parte de un primer paso que extrae el texto a partir de los diferentes origenes posibles.
+Despues se realizan varios pasos para mejorar el contenido almacenado.
+Se realiza una limpieza del texto  en varios pasos para mejorar el contenido.
+Se realiza la particion del texto en chuncks , el tamaño del chunk lo hemos fijado en funcion de los tokens=2000
+Se crean los vectores.
+Se almacenan en la base de datos.
+
+#### ll_bot.py
+
+Aqui se agrupan las funciones que acceden a los LLMs.
+Las funciones acceden a los LLMs para obtener el contexto de los embedings almacenados en la base de datos,
+
+Realizan una consulta para determinar si la pregunta debe aceptarse o filtrarse (guardarail)
+
+Y se realiza la consulta al LLmen funcion del historial, la pregunta y el contexto obtenido , para la redaccion correcta del mensage de respuesta al usuario.
+E
 

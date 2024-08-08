@@ -254,7 +254,11 @@ Una vez incorporados , podremos empezar a realizar preguntas al chatbot-
 
 ### Tematica chatbot
 
-En el prompt se indica la tematica del chatbot, este parametro se usa en la comprocacion interna antes de procesar cada pregunta.
+En el prompt se indica la tematica del chatbot, este parametro se usa en la comprobacion interna antes de procesar cada pregunta.
+
+#### directorio  docs-pdf
+Contiene ejemplos de archivos pdf sobre el sistema solar que se pueden descargar y utilizar para la base de conocimiento del chatbot
+
 
 ### Aspecto Frontend 
 La personalizacion en el aspecto se puede modificar editanto los archivos de Streamlit: 
@@ -267,11 +271,14 @@ directorio styles contiene el css que modifica el aspecto y permite la correcta 
 
 ### Paginas frontend
 
-la pagina principal del frontend es main.py. 
+#### main.py
+Es la pagina principal del frontend. 
+Se basa en Streamlit.
 
 Esta pagina contiene la logica y los elementos del chatbot
 
-La pagina  pages\2_upload.py es para cargar nuevos documentos de conocimiento, ver los documentos que se han subido y eliminarlos si se desea, asi como abrir el documento para visualizarlo.
+#### pages\2_upload.py
+Esta pagina es para cargar nuevos documentos de conocimiento, ver los documentos que se han subido y eliminarlos si se desea, asi como abrir el documento para visualizarlo.
 
 ### LLMS, EMBEDINGS, RAG
 
@@ -312,5 +319,5 @@ Las funciones acceden a los LLMs para obtener el contexto de los embedings almac
 Realizan una consulta para determinar si la pregunta debe aceptarse o filtrarse (guardarail)
 
 Y se realiza la consulta al LLmen funcion del historial, la pregunta y el contexto obtenido , para la redaccion correcta del mensage de respuesta al usuario.
-E
+
 

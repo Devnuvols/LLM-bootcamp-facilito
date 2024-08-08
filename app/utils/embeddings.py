@@ -1,5 +1,3 @@
-#import streamlit as st
-#from streamlit.delta_generator import DeltaGenerator
 from typing import List, Dict, Any, Optional
 import json
 from PyPDF2 import PdfReader
@@ -98,8 +96,6 @@ def parse_pptx(pptx_path:str) -> List[Dict[str, str]]:
                 } 
                 pages_text.append(new)
     return pages_text
-
-  
 
 def preprocess_text(text: str) -> str:
     """Uses chatgpt to clean any text."""

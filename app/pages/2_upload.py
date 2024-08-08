@@ -7,8 +7,7 @@ import hashlib
 
 from st_pages import show_pages, Page, hide_pages
 from utils.embeddings import process_file, save
-from utils.index_pgvector import insert_or_update, check_hash
-from utils.database import get_conn, delete_docs
+from utils.database import get_conn, delete_docs, insert_or_update, check_hash
 import pandas as pd
 from sqlalchemy import create_engine
 

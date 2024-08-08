@@ -1,4 +1,3 @@
-
 from typing import List, Dict, Any, Tuple
 from functools import reduce
 import json
@@ -16,7 +15,6 @@ def get_conn() -> connection:
         user=os.environ.get('DOCS_USER',''),
         password=os.environ.get('DOCS_PASSWORD', '')
     )
-
 def insert_QA(query: str, answer: str):
     """Inserts query into table history"""
     conn = get_conn()
@@ -86,8 +84,6 @@ def read_vectors(emb_path: str) -> Tuple[List[Dict[str, Any]], int]:
     assert len(vectors) > 0, 'No valid embeddings found.'
     return vectors
 
-
-
 def insert_or_update(vector: Dict[str, Any], metadata: Dict[str, Any]):
     """
     Insert or update the given embedding with metadata in chroma collection.
@@ -139,8 +135,3 @@ def delete_docs(hashes: List[str]):
     finally:
         cursor.close()
         conn.close()
-
-
-
-
-

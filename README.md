@@ -7,11 +7,11 @@ Los usuarios pueden cargar documentos y deben estar en formatos PDF, DOCX, PPTX.
 
 Se realiza la consulta de los datos mediante RAG, utilizando una base de datos vectorial par almacenar los embeddings
 
-Se controla el correcto dialogo mediante prompting, y se usa tambien Guardarail.ai para evitar uso inadecuado
+Se controla el correcto dialogo mediante prompting, y se usa tambien un sistema de guardarail implementado internamente que verifica si la pregunta es sobre la tematica del chatbot para evitar uso inadecuado
 
 Se almacena el historial de preguntas y respuestas, asi como el feedback indicado por el usuario para fines de mejora.
 
-La interactuacion , o frontend, es mediante webapp.
+La interactuacion , o frontend, es mediante entorno webapp.
 Para desarrollo en local es con el protocolo http,
 y en el entorno de produccion se utiliza el protocolo https, y  se instala un certificado digital.
 

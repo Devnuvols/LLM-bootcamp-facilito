@@ -15,7 +15,9 @@ La interactuacion , o frontend, es mediante entorno webapp.
 Para desarrollo en local es con el protocolo http,
 y en el entorno de produccion se utiliza el protocolo https, y  se instala un certificado digital.
 
-Esta en desarrollo la version APIREST que permite la interaccion mediante WhatsApp
+La version APIREST que permite la interaccion mediante WhatsApp, como frontend puedes encontrarla aqui:
+
+https://github.com/Devnuvols/LLM-whatsapp.git
 
 ## FRONTEND
 
